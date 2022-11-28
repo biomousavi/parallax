@@ -1,9 +1,61 @@
 <script setup lang="ts">
 // import { RouterLink, RouterView } from "vue-router";
+import Parallax from 'parallax-js';
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  var scene = document.getElementById('scene')!;
+  var parallaxInstance = new Parallax(scene);
+});
 </script>
 
 <template>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+  <!-- biomousavi text with crystal parrallax -->
+  <div id="scene" class="flex flex-col justify-center items-center min-h-screen">
+    <h1 data-depth="0.6">Biomousavi.</h1>
+  </div>
+
+  <!-- lottie files laptop scroll -->
+
+  <!-- skills card animation -->
+
+  <!-- lovely places with overdrive -->
 </template>
 
-<style></style>
+<style>
+:root {
+  --bg-color: hsl(0, 0%, 17%);
+}
+
+#app {
+  background-color: var(--bg-color);
+  overflow: hidden;
+}
+
+div h1 {
+  position: relative;
+  --bg-size: 400%;
+  font-weight: bold;
+  --color-one: #7956fc;
+  --color-two: #00edb1;
+  font-size: 10vw;
+  background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
+    var(--bg-size) 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  div h1 {
+    animation: move-bg 14s linear infinite;
+  }
+
+  @keyframes move-bg {
+    to {
+      background-position: var(--bg-size) 0;
+    }
+  }
+}
+</style>
