@@ -1,2 +1,54 @@
 @import './base.css';
 
+@font-face {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(""), url("@/assets/fonts/quicksand.woff2") format("woff2"),
+    /* Chrome 26+, Opera 23+, Firefox 39+ */
+    url("@/assets/fonts/quicksand.woff") format("woff");
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-bottom-enter-active,
+.fade-bottom-leave-active {
+  transform: translateY(0);
+  transition: all 2.5s ease;
+}
+
+.fade-bottom-enter-from,
+.fade-bottom-leave-to {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+
+:root {
+  --bg-color: hsl(0, 0%, 17%);
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+#app {
+  background-color: var(--bg-color);
+  overflow: hidden;
+  font-family: 'Quicksand', sans-serif;
+}

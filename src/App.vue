@@ -1,12 +1,23 @@
 <script setup lang="ts">
 // import { RouterLink, RouterView } from "vue-router";
 import Parallax from 'parallax-js';
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+
+const backgroundIsloaded = ref(false);
 
 onMounted(() => {
-  var scene = document.getElementById('scene')!;
-  var parallaxInstance = new Parallax(scene, {
-    hoverOnly: true,
+  // preload image and set it to element style and listening to load event
+  const imageUrl = '/cloud-bg.png';
+  const bgElement: HTMLDivElement = document.querySelector('#scene')!;
+  let preloaderImg = document.createElement('img');
+  preloaderImg.src = imageUrl;
+  preloaderImg.addEventListener('load', () => {
+    bgElement.style.backgroundImage = `url(${imageUrl})`;
+    backgroundIsloaded.value = true;
+
+    // get scene element and pass to parallax lib
+    const scene = document.getElementById('scene')!;
+    new Parallax(scene, { hoverOnly: true });
   });
 });
 </script>
@@ -14,11 +25,15 @@ onMounted(() => {
 <template>
   <!-- biomousavi text with crystal parrallax -->
   <div id="scene" class="flex flex-col justify-center items-center min-h-screen">
-    <h1 data-depth="0.1">Biomousavi.</h1>
-
-    <!-- src="/people.png" -->
+    <div data-depth="0.2">
+      <Transition name="fade">
+        <h1 v-if="backgroundIsloaded">Biomousavi.</h1>
+      </Transition>
+    </div>
     <div data-depth="0.4">
-      <div class="image"></div>
+      <Transition name="fade-bottom">
+        <div v-if="backgroundIsloaded" class="scene-image"></div>
+      </Transition>
     </div>
   </div>
 
@@ -31,58 +46,37 @@ onMounted(() => {
   <!-- lovely places with overdrive -->
 </template>
 
-<style scoped>
-:root {
-  --bg-color: hsl(0, 0%, 17%);
-}
-
-#app {
-  background-color: var(--bg-color);
-  overflow: hidden;
-}
-
+<style>
 #scene {
   overflow: hidden;
-  background-image: url('/cloud-bg.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
 }
-
 #scene div {
   width: 100%;
   height: 100%;
+  text-align: center;
 }
 #scene div div {
-  /* width: 300%;
-  height: 100%;
-  position: absolute;
-  background-size: auto 101%;
-  background-position: center bottom; */
-
   background-image: url('/people.png');
-  /* background-color: yellowgreen; */
   position: absolute;
   width: 120%;
-  left: -5%;
-  /* transform: translate3d(0, 0, 0); */
-  /* transform-style: preserve-3d; */
+  left: -15%;
   backface-visibility: hidden;
-  /* background-image: url(../../images/wave-paint.png); */
-  bottom: -10%;
+  bottom: -6%;
   background-position: center top;
-  /* background-repeat: no-repeat; */
   background-size: cover;
   height: 230px;
 }
 
 #scene h1 {
   --bg-size: 400%;
+  font-size: 10vw;
   margin-bottom: 15%;
   font-weight: bold;
   --color-one: #00000a;
   --color-two: #dddede;
-  font-size: 10vw;
   background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
     var(--bg-size) 100%;
   color: transparent;
@@ -100,6 +94,12 @@ onMounted(() => {
     to {
       background-position: var(--bg-size) 0;
     }
+  }
+}
+@media (max-width: 640px) {
+  #scene h1 {
+    font-size: 15vw;
+    margin-bottom: 70%;
   }
 }
 </style>
