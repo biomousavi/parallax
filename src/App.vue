@@ -25,7 +25,7 @@ onMounted(() => {
 <template>
   <!-- biomousavi text with crystal parrallax -->
   <div id="scene" class="flex flex-col justify-center items-center min-h-screen">
-    <div data-depth="0.2">
+    <div data-depth="0.15">
       <Transition name="fade">
         <h1 v-if="backgroundIsloaded">Biomousavi.</h1>
       </Transition>
@@ -62,7 +62,7 @@ onMounted(() => {
   background-image: url('/people.png');
   position: absolute;
   width: 120%;
-  left: -15%;
+  left: -12%;
   backface-visibility: hidden;
   bottom: -6%;
   background-position: center top;
@@ -97,6 +97,10 @@ onMounted(() => {
   }
 }
 @media (max-width: 640px) {
+  #scene div div {
+    bottom: -15%;
+    left: -10%;
+  }
   #scene h1 {
     font-size: 15vw;
     margin-bottom: 70%;
