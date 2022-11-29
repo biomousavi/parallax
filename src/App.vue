@@ -5,15 +5,24 @@ import { onMounted } from 'vue';
 
 onMounted(() => {
   var scene = document.getElementById('scene')!;
-  var parallaxInstance = new Parallax(scene);
+  var parallaxInstance = new Parallax(scene, {
+    hoverOnly: true,
+  });
 });
 </script>
 
 <template>
   <!-- biomousavi text with crystal parrallax -->
   <div id="scene" class="flex flex-col justify-center items-center min-h-screen">
-    <h1 data-depth="0.05">Biomousavi.</h1>
+    <h1 data-depth="0.1">Biomousavi.</h1>
+
+    <!-- src="/people.png" -->
+    <div data-depth="0.4">
+      <div class="image"></div>
+    </div>
   </div>
+
+  <div class="min-h-screen"></div>
 
   <!-- lottie files laptop scroll -->
 
@@ -40,12 +49,39 @@ onMounted(() => {
   background-position: center center;
 }
 
+#scene div {
+  width: 100%;
+  height: 100%;
+}
+#scene div div {
+  /* width: 300%;
+  height: 100%;
+  position: absolute;
+  background-size: auto 101%;
+  background-position: center bottom; */
+
+  background-image: url('/people.png');
+  /* background-color: yellowgreen; */
+  position: absolute;
+  width: 120%;
+  left: -5%;
+  /* transform: translate3d(0, 0, 0); */
+  /* transform-style: preserve-3d; */
+  backface-visibility: hidden;
+  /* background-image: url(../../images/wave-paint.png); */
+  bottom: -10%;
+  background-position: center top;
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+  height: 230px;
+}
+
 #scene h1 {
   --bg-size: 400%;
   margin-bottom: 15%;
   font-weight: bold;
   --color-one: #00000a;
-  --color-two: #00edb1;
+  --color-two: #dddede;
   font-size: 10vw;
   background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
     var(--bg-size) 100%;
