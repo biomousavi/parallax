@@ -12,7 +12,7 @@ onMounted(() => {
 <template>
   <!-- biomousavi text with crystal parrallax -->
   <div id="scene" class="flex flex-col justify-center items-center min-h-screen">
-    <h1 data-depth="0.6">Biomousavi.</h1>
+    <h1 data-depth="0.05">Biomousavi.</h1>
   </div>
 
   <!-- lottie files laptop scroll -->
@@ -22,7 +22,7 @@ onMounted(() => {
   <!-- lovely places with overdrive -->
 </template>
 
-<style>
+<style scoped>
 :root {
   --bg-color: hsl(0, 0%, 17%);
 }
@@ -32,11 +32,19 @@ onMounted(() => {
   overflow: hidden;
 }
 
-div h1 {
-  position: relative;
+#scene {
+  overflow: hidden;
+  background-image: url('/cloud-bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#scene h1 {
   --bg-size: 400%;
+  margin-bottom: 15%;
   font-weight: bold;
-  --color-one: #7956fc;
+  --color-one: #00000a;
   --color-two: #00edb1;
   font-size: 10vw;
   background: linear-gradient(90deg, var(--color-one), var(--color-two), var(--color-one)) 0 0 /
@@ -48,7 +56,7 @@ div h1 {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  div h1 {
+  #scene h1 {
     animation: move-bg 14s linear infinite;
   }
 
