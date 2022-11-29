@@ -98,8 +98,9 @@ onMounted(() => {
 }
 @media (max-width: 640px) {
   #scene div div {
-    bottom: -15%;
-    left: -10%;
+    left: -20%;
+    width: 180%;
+    bottom: -12%;
   }
   #scene h1 {
     font-size: 15vw;
