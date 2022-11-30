@@ -7,7 +7,7 @@ const backgroundIsloaded = ref(false);
 
 onMounted(() => {
   // preload image and set it to element style and listening to load event
-  const imageUrl = '/cloud-bg.png';
+  const imageUrl = '/cloud-bg.webp';
   const bgElement: HTMLDivElement = document.querySelector('#scene')!;
   let preloaderImg = document.createElement('img');
   preloaderImg.src = imageUrl;
@@ -59,7 +59,7 @@ onMounted(() => {
   text-align: center;
 }
 #scene div div {
-  background-image: url('/people.png');
+  background-image: url('/people.webp');
   position: absolute;
   width: 120%;
   left: -12%;
