@@ -38,7 +38,7 @@
 :root {
   --bg-color: #00000a;
   --color-one: #00000a;
-    --color-two: #dddede;
+  --color-two: #dddede;
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
@@ -51,6 +51,7 @@
 }
 
 #app {
+  -webkit-font-smoothing: antialiased;
   background-color: var(--bg-color);
   overflow: hidden;
   font-family: 'Quicksand', sans-serif;

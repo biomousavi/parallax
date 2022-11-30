@@ -1,13 +1,80 @@
 <script setup lang="ts">
-import Parallax from 'parallax-js';
 import sal from 'sal.js';
-
+import Parallax from 'parallax-js';
 import { onMounted, ref } from 'vue';
+import SkillCard from './components/SkillCard.vue';
+
 const backgroundIsloaded = ref(false);
+const skills = ref([
+  {
+    title: 'JavaScript',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'TypeScript',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'Nest.js',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'Docker',
+    img: 'https://png2.cleanpng.com/sh/484e4c6f2b97a99027bc94656de3a35f/L0KzQYm3VMA5N5dqfZH0aYP2gLBuTfRwa5xqip95eYTrf7A0kB9nfKhmitc2ZHXzfLFCjfVvfF59fdRyYXzkcsS0gB9vfJJuhtd7LUXkc7K5V8Nna2ZqTtcBLkS0R4e5UcA4OWY3S6MEN0e4SYm4UMYveJ9s/kisspng-docker-python-software-deployment-xebialabs-container-5aca273fc5e6e6.4176210715231977598106.png',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'K8s/Kubernetes',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'PostgreSQL',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'MongoDB',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'GraphQL',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'Vue.js',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'Nuxt.js',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'Rust',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'TDD',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+  {
+    title: 'OOP',
+    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
+    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+  },
+]);
 
 onMounted(() => {
   sal();
-
   // preload image and set it to element style and listening to load event
   const imageUrl = '/cloud-bg.webp';
   const bgElement: HTMLDivElement = document.querySelector('#scene')!;
@@ -56,7 +123,8 @@ onMounted(() => {
     </div>
   </div>
 
-  <div id="second" class="min-h-screen w-full text-center flex flex-col items-center">
+  <!-- lottie files scroll -->
+  <div id="second" class="w-full text-center flex flex-col items-center">
     <h2
       class="text-gray-300 text-xl md:text-4xl mt-16 font-bold"
       data-sal-duration="2000"
@@ -70,20 +138,38 @@ onMounted(() => {
 
     <lottie-player
       id="plant"
-      class="w-1/2 mt-10"
+      class="w-9/12 mt-4"
       src="https://assets5.lottiefiles.com/packages/lf20_rK1iJW.json"
       >"
     </lottie-player>
   </div>
 
-  <div
-    id="third"
-    class="min-h-screen w-full text-center mt-32 flex flex-col justify-center items-center"
-  ></div>
+  <!-- skills card -->
+  <div id="third" class="w-full text-center flex flex-col justify-center items-center">
+    <h2
+      class="text-gray-300 text-2xl md:text-4xl font-bold mb-16"
+      data-sal-duration="2000"
+      data-sal="slide-up"
+      data-sal-repeat
+      data-sal-delay="300"
+      data-sal-easing="ease-out-back"
+    >
+      Skills
+    </h2>
 
-  <!-- lottie files laptop scroll -->
-
-  <!-- skills card animation -->
+    <div class="flex flex-wrap justify-center py-10 px-20">
+      <template v-for="skill in skills" :key="skill.title">
+        <SkillCard :data-image="skill.img">
+          <template v-slot:header
+            ><h1>{{ skill.title }}</h1>
+          </template>
+          <template v-slot:content>
+            <p>{{ skill.desciption }}</p>
+          </template>
+        </SkillCard>
+      </template>
+    </div>
+  </div>
 
   <!-- lovely places with overdrive -->
 </template>
