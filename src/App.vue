@@ -1,75 +1,70 @@
 <script setup lang="ts">
 import sal from 'sal.js';
 import Parallax from 'parallax-js';
-import { onMounted, ref } from 'vue';
-import SkillCard from './components/SkillCard.vue';
+import { defineAsyncComponent, onMounted, ref } from 'vue';
+const SkillCard = defineAsyncComponent(() => import('./components/SkillCard.vue'));
 
 const backgroundIsloaded = ref(false);
 const skills = ref([
   {
     title: 'JavaScript',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/383640/pexels-photo-383640.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'JavaScript, often abbreviated as JS, is a programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS. ',
   },
   {
     title: 'TypeScript',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/3894157/pexels-photo-3894157.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'TypeScript is a free and open source programming language developed and maintained by Microsoft. It is a strict syntactical superset of JavaScript and adds optional static typing to the language.',
   },
   {
     title: 'Nest.js',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://trilon.io/_nuxt/img/b471e1c.jpeg',
+    desciption:
+      'Nest. JS is a framework that helps build Node. JS server-side applications. The Nest framework is built using TypeScript which allows developers to build highly scalable and testable applications.',
   },
   {
     title: 'Docker',
-    img: 'https://png2.cleanpng.com/sh/484e4c6f2b97a99027bc94656de3a35f/L0KzQYm3VMA5N5dqfZH0aYP2gLBuTfRwa5xqip95eYTrf7A0kB9nfKhmitc2ZHXzfLFCjfVvfF59fdRyYXzkcsS0gB9vfJJuhtd7LUXkc7K5V8Nna2ZqTtcBLkS0R4e5UcA4OWY3S6MEN0e4SYm4UMYveJ9s/kisspng-docker-python-software-deployment-xebialabs-container-5aca273fc5e6e6.4176210715231977598106.png',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/3063470/pexels-photo-3063470.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'Docker is a set of platform as a service products that use OS-level virtualization to deliver software in packages called containers. The service has both free and premium tiers.',
   },
   {
-    title: 'K8s/Kubernetes',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    title: 'Kubernetes',
+    img: 'https://media.istockphoto.com/id/495907882/photo/common-octopus.jpg?b=1&s=612x612&w=0&k=20&c=2Mao1KQGywmK-Gk0AXfAX8i2Y30qoucTITd36TtVi9o=',
+    desciption:
+      'Kubernetes is an open-source container orchestration system for automating software deployment, scaling, and management.',
   },
   {
     title: 'PostgreSQL',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/1750820/pexels-photo-1750820.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'PostgreSQL, also known as Postgres, is a free and open-source relational database management system emphasizing extensibility and SQL compliance.',
   },
   {
     title: 'MongoDB',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  },
-  {
-    title: 'GraphQL',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/990349/pexels-photo-990349.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'MongoDB is a source-available cross-platform document-oriented database program. Classified as a NoSQL database program, MongoDB uses JSON-like documents with optional schemas.',
   },
   {
     title: 'Vue.js',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/1407305/pexels-photo-1407305.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'Vue.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications.',
   },
   {
     title: 'Nuxt.js',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/1770809/pexels-photo-1770809.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'Nuxt.js is a free and open source JavaScript library based on Vue.js, Node.js, Webpack and Babel.js. Nuxt is inspired by Next.js, which is a framework of similar purpose, based on React.js.',
   },
   {
     title: 'Rust',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  },
-  {
-    title: 'TDD',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-  },
-  {
-    title: 'OOP',
-    img: 'https://images.unsplash.com/photo-1479660656269-197ebb83b540?dpr=2&auto=compress,format&fit=crop&w=1199&h=798&q=80&cs=tinysrgb&crop=',
-    desciption: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
+    img: 'https://images.pexels.com/photos/114108/pexels-photo-114108.jpeg?auto=compress&cs=tinysrgb&w=600',
+    desciption:
+      'Rust is a multi-paradigm, general-purpose programming language. Rust emphasizes performance, type safety, and concurrency.',
   },
 ]);
 
@@ -146,16 +141,37 @@ onMounted(() => {
 
   <!-- skills card -->
   <div id="third" class="w-full text-center flex flex-col justify-center items-center">
-    <h2
-      class="text-gray-300 text-2xl md:text-4xl font-bold mb-16"
-      data-sal-duration="2000"
-      data-sal="slide-up"
-      data-sal-repeat
-      data-sal-delay="300"
-      data-sal-easing="ease-out-back"
-    >
-      Skills
-    </h2>
+    <div class="w-full flex justify-around items-center mb-16">
+      <div
+        data-sal-duration="2000"
+        data-sal="slide-right"
+        data-sal-repeat
+        data-sal-delay="300"
+        data-sal-easing="ease-out-back"
+        style="height: 2px"
+        class="w-1/3 bg-gray-300 rounded-full"
+      ></div>
+      <h2
+        class="text-gray-300 text-2xl md:text-5xl font-bold"
+        data-sal-duration="2000"
+        data-sal="slide-up"
+        data-sal-repeat
+        data-sal-delay="300"
+        data-sal-easing="ease-out-back"
+      >
+        Skills
+      </h2>
+
+      <div
+        data-sal-duration="2000"
+        data-sal="slide-left"
+        data-sal-repeat
+        data-sal-delay="300"
+        data-sal-easing="ease-out-back"
+        style="height: 2px"
+        class="w-1/3 bg-gray-300 rounded-full"
+      ></div>
+    </div>
 
     <div class="flex flex-wrap justify-center py-10 px-20">
       <template v-for="skill in skills" :key="skill.title">
@@ -170,8 +186,6 @@ onMounted(() => {
       </template>
     </div>
   </div>
-
-  <!-- lovely places with overdrive -->
 </template>
 
 <style>
@@ -209,10 +223,10 @@ onMounted(() => {
 }
 
 @media (max-width: 640px) {
-  #scene div div {
+  #scene .people {
     left: -20%;
     width: 180%;
-    bottom: -12%;
+    bottom: -16%;
   }
   #scene h1 {
     margin-bottom: 70%;
