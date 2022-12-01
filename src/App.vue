@@ -119,7 +119,7 @@ onMounted(() => {
   </div>
 
   <!-- lottie files scroll -->
-  <div id="second" class="w-full text-center flex flex-col items-center">
+  <div id="second" class="w-full text-center flex flex-col items-center mb-52">
     <h2
       class="text-gray-300 text-xl md:text-4xl mt-16 font-bold"
       data-sal-duration="2000"
